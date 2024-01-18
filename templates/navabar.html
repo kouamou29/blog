@@ -1,0 +1,37 @@
+<nav class="bg-gray-800 p-10">
+  <div class="container max-auto  flex justify-between items-center pl-42">
+     <div class="text-white font-bold pl-32">
+          <a href="">Blog</a>
+     </div>
+     <div class="hidden md:flex  space-x-4 pl-20 ">
+        <a class="text-white font-bold hover:underline decoration-sky-500" href="{% url 'index' %}">Home</a>
+        <a class="text-white font-bold hover:underline decoration-sky-500" href="{% url 'dashboard' %}">Dashboard</a>
+        <a class="text-white font-bold hover:underline decoration-sky-500" href="">Service</a>
+        
+        {% if user.is_authenticated %}
+        <a class="text-white font-bold hover:underline decoration-sky-500" href="{% url 'user_logut' %}">Logout</a>
+         <samp class="text-white">{{user.username}}</samp>
+         {% else %}
+         <a class="text-white font-bold hover:underline decoration-sky-500" href="{% url 'user_login' %}">Login</a>
+        {% endif %}
+         
+   
+     </div>
+     <div class="md:hidden">
+        <button id="ButtonMenu" class="text-white font-bold">
+         Menu
+        </button>
+     </div>
+  </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const MenuBoutton= document.getElementById('ButtonMenu');
+        const NavLinks = document.querySelector('.hidden')
+         MenuBoutton.addEventListener('click', function(){
+            NavLinks.classList.toggle('hidden')
+           
+        })
+    })
+</script>

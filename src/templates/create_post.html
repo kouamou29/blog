@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+
+{% block title %} create post{% endblock title %}
+
+
+
+
+{% block content %}
+<div  id="createArticleModal"  class=" modal container flex justify-center mt-8">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form action="" method="POST" id="articleForm" enctype="multipart/form-data">
+         {% csrf_token %}
+            <div>
+                {{ form|crispy }}
+            </div>
+            <button class="bg-gray-800 px-4 py-2 rounded-md
+             w-32 text-white mt-4" type="submit" value="Create Article">Create Post</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}
+    
+
+    

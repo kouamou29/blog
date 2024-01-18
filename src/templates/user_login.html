@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+  
+  {% block title %} Login {% endblock title %}
+    
+
+
+{% block content %}
+    <div class="flex justify-center mt-8">
+    {% if messages %}
+    <ul class="px-8 py-4 bg-red-400 boder border-red-800 w-81 rounded-sm">
+        {% for message in messages %}
+        <li class="text-red-700">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    </div>
+     <h5 class="flex justify-center ">Login</h5>
+   <div class="flex justify-center max-auto  mt-16">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="">Uersname</label><br>
+            <input type="text" class="px-8 py-2 w-96 rounded-md border border-slate-300" name="username">
+        </div>
+        <div>
+            <label for="">Password</label><br>
+            <input type="password" class="px-8 py-2 w-96 rounded-md  border border-slate-300" name="password">
+        </div>
+        <button class="px-8 py-2 bg-gray-800  rounded-md  text-white mt-8" type="submit">Login</button>
+
+        <a href="{% url 'user_register' %}">register</a>
+    </form>
+</div>
+{% endblock content %}
+    

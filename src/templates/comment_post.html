@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+
+{% block title %} details post{% endblock title %}
+
+
+{% block content %}
+
+
+    <div class="flex items-stretch mt-2 m-16 space-x-1 ">
+        <div class="px-1.5 py-6 bg-gray-200/150 mt-2 rounded-md w-full border 
+        border-slate-300">
+        <p class="text-slate-800"><svg class="w-8 text-blue-600/100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg> Hauteur: {{post.user.username}}</p>
+        <p>{{post.name}}</p>
+        <p>{{post.Text}}</p>
+        <span>  {{post.created_at}}</span>
+   </div>
+</div>
+
+<div class="container flex justify-center mt-16">
+  
+    <div class="grid grid-cols-4 gap-4">
+        {% for comments in comment %}
+    
+        <p class=> Commentaires: User: {{ comments.user.username }}</p><br>
+            <p>{{ comments.content }}</p>
+            <p> il y a : {{ comments.created_at| timesince }}</p>
+          {% endfor %}
+      </div>
+  </div>
+  
+  {% if user.is_authenticated %}
+  <div class=" container flex justify-center ">
+    <form action="" hx-post="{% url 'comment_post' post.id %}"  hx-target="body" method="POST">
+        {% csrf_token %}
+          <div>
+           {{ form |crispy }}
+          </div>
+        <button class="bg-gray-800 px-4 py-2 rounded-md w-32 text-white mt-4" type="submit">Commentaire</button>
+    </form>
+ </div>
+ {% else %}
+    <div class="flex justify-center">
+      <p  class="text-red-700">Connnectez-vous et  Commentaire les Articles.</p>
+      <a class="text-blue-600" href="{% url 'user_login' %}">connexion</a>
+    </div>
+      
+ {% endif %}
+  
+ 
+    
+{% endblock content %}
+    
+    

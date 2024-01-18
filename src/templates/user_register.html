@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block title %} Register {% endblock title %}
+
+
+{% block content %}
+  </div>
+     <div class=" container flex justify-center mt-16">
+        <form action="" method="POST">
+            {% csrf_token %}
+              <div>
+               {{ form|crispy }}
+              </div>
+            <button class="bg-gray-800 px-4 py-2 rounded-md w-32 text-white mt-4" type="submit"> Register</button>
+        </form>
+     </div>
+{% endblock content %}
+    
+    
